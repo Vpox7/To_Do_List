@@ -6,12 +6,14 @@ using namespace std;
 class TaskManagement {
 public:vector<string>Vtask;
 public:string task;
+public:
+
 
 
 	  void Add_Task() {
 		 cout << "Enter the task" << endl;
 		 cin.ignore();
-		  getline(cin, task);
+		 getline(cin, task);
 		 
 		  Vtask.push_back(task);
 
@@ -39,6 +41,39 @@ public:string task;
 
 	  }
 
+	  void Edit_Task() {
+		  if (Vtask.empty()) {
+
+			  cout << "Task List is Empty" << endl;
+			  return;
+		  }
+		  Display_Task();
+		
+		  cout << "Enter the Number to Edit the Task" << endl;
+		  int Num;
+		  cin >> Num;
+		 if(cin.fail())
+		  {
+			 cin.clear();
+			  cin.ignore();
+			  
+		  }
+		 cout << "Enter the Changed Task" << endl;
+		 string Task;
+		 cin >> Task;
+		 if (cin.fail()) {
+			 cin.ignore();
+			 cin.clear();
+		 }
+		 Vtask[Num-1] = Task;
+
+
+
+
+	  }
+	 
+
+
 	  void Display_Task() {
 		  int c = 0;
 		  cout << "******************TASK LIST**************************" << endl;
@@ -65,28 +100,25 @@ public:string task;
 		  switch (x)
 		  {
 		  case 1:
-			  cout << "1 IS the choice" << endl;
+			  
 			  Add_Task();
 			  break;
 		  case 2:
-			  cout << "2 IS the choice" << endl;
+			
 			  Display_Task();
 			  Remove_Task();
 			  break;
 		  case 3:
-			  cout << "3 IS the choice" << endl;
+			
 			  Display_Task();
 			  break;
 		  case 4:
-			  cout << "4 IS the choice" << endl;
-
+			
+			  Edit_Task();
 			  break;
+		  
 		  case 5:
-			  cout << "5 IS the choice" << endl;
-
-			  break;
-		  case 6:
-			  cout << "6 IS the choice" << endl;
+			 
 
 			  break;
 
@@ -110,13 +142,18 @@ public:string task;
 		  cout << "Enter the number to remove:" << endl;
 		  int num;
 		  cin >> num;
-		  Vtask.erase(Vtask.begin() + num-1);
-		  cout << "REMOVED SUCCESSFUL!" << endl;
-		  for (auto i : Vtask) {
-			  cout <<++c << ") " << i << endl;
+		  if (cin.fail()) {
+			  cin.clear();
+			  cin.ignore();
 		  }
+		  else if(num >0 &&num <=Vtask.size()) {
+			  Vtask.erase(Vtask.begin() + num - 1);
+			  cout << "REMOVED SUCCESSFUL!" << endl;
+			  for (auto i : Vtask) {
+				  cout << ++c << ") " << i << endl;
+			  }
 
-
+		  }
 	  }
 
 
@@ -132,8 +169,8 @@ public:string task;
 		  cout << "2)Remove the task" << endl;
 		  cout << "3)Display the task" << endl;
 		  cout << "4)Edits as Done" << endl;
-		  cout << "5)Marks as done " << endl;
-		  cout << "6)Exit" << endl;
+	
+		  cout << "5)Exit" << endl;
 		  cout << "*************************************************************" << endl;
 
 
