@@ -26,7 +26,7 @@ public:string task;
 		
 		  if (cin.fail()) {
 			  cin.clear();
-			  //cin.ignore(numeric_limits<streamsize>::max(),'\n');
+			
 			  return - 1;
 		  }
 		  
@@ -70,7 +70,8 @@ public:string task;
 			  break;
 		  case 2:
 			  cout << "2 IS the choice" << endl;
-
+			  Display_Task();
+			  Remove_Task();
 			  break;
 		  case 3:
 			  cout << "3 IS the choice" << endl;
@@ -90,6 +91,7 @@ public:string task;
 			  break;
 
 		  default:
+			  cout << "Enter valied Number" << endl;
 			  break;
 		  }
 
@@ -99,6 +101,26 @@ public:string task;
 
 
 	  }
+	  void Remove_Task() {
+		  if (Vtask.empty()) {
+			  cout << "Empty List" << endl;
+			  return;
+		}
+		  int c = 0;
+		  cout << "Enter the number to remove:" << endl;
+		  int num;
+		  cin >> num;
+		  Vtask.erase(Vtask.begin() + num-1);
+		  cout << "REMOVED SUCCESSFUL!" << endl;
+		  for (auto i : Vtask) {
+			  cout <<++c << ") " << i << endl;
+		  }
+
+
+	  }
+
+
+
 
 
 
